@@ -1,0 +1,11 @@
+{
+  "products": [
+    {
+      "name": "abc",
+      "image": "https://picsum.photos/200/300",
+      "price": 10,
+      "description": "abc",
+      "id": 1
+    }
+  ]
+}
