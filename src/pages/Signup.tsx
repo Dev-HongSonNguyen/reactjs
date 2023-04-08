@@ -64,8 +64,13 @@ const Signup = () => {
   //     } catch (error) {}
   //   };
   return (
-    <>
-      <p className="text-center">Register</p>
+    <div className="pb-[50px]">
+      <p
+        className="text-center text-[#ffff] text-[40px]"
+        style={{ fontFamily: "'Bebas Neue', cursive", paddingTop: "50px" }}
+      >
+        Register
+      </p>
       <Form
         {...formItemLayout}
         form={form}
@@ -75,11 +80,21 @@ const Signup = () => {
           residence: ["zhejiang", "hangzhou", "xihu"],
           prefix: "86",
         }}
-        style={{ maxWidth: 400, margin: "auto" }}
+        style={{
+          width: 400,
+          margin: "auto",
+          // backgroundColor: "#171F32",
+        }}
         scrollToFirstError
       >
+        <p
+          style={{ fontFamily: "'Bebas Neue', cursive" }}
+          className="text-[#ffff]"
+        >
+          NAME PRODUCT
+        </p>
         <Form.Item
-          label="Name"
+          label=""
           name="name"
           tooltip="What do you want others to call you?"
           rules={[
@@ -90,11 +105,17 @@ const Signup = () => {
             },
           ]}
         >
-          <Input />
+          <Input style={{ width: "400px" }} />
         </Form.Item>
+        <p
+          style={{ fontFamily: "'Bebas Neue', cursive" }}
+          className="text-[#ffff]"
+        >
+          EMAIL
+        </p>
         <Form.Item
           name="email"
-          label="E-email"
+          label=""
           rules={[
             {
               type: "email",
@@ -106,12 +127,17 @@ const Signup = () => {
             },
           ]}
         >
-          <Input />
+          <Input style={{ width: "400px" }} />
         </Form.Item>
-
+        <p
+          style={{ fontFamily: "'Bebas Neue', cursive" }}
+          className="text-[#ffff]"
+        >
+          PASSWORD
+        </p>
         <Form.Item
           name="password"
-          label="Password"
+          label=""
           rules={[
             {
               required: true,
@@ -120,12 +146,17 @@ const Signup = () => {
           ]}
           hasFeedback
         >
-          <Input.Password />
+          <Input.Password style={{ width: "400px" }} />
         </Form.Item>
-
+        <p
+          style={{ fontFamily: "'Bebas Neue', cursive" }}
+          className="text-[#ffff]"
+        >
+          CONFIRM PASSWORD
+        </p>
         <Form.Item
           name="confirmPassword"
-          label="Confirm Password"
+          label=""
           dependencies={["password"]}
           hasFeedback
           rules={[
@@ -145,15 +176,20 @@ const Signup = () => {
             }),
           ]}
         >
-          <Input.Password />
+          <Input.Password style={{ width: "400px" }} />
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">
+          <Button
+            className="bg-[#ffff] text-[#171F32]"
+            type="primary"
+            htmlType="submit"
+            style={{ fontFamily: "'Bebas Neue', cursive", width: "130px" }}
+          >
             Register
           </Button>
         </Form.Item>
       </Form>
-    </>
+    </div>
   );
 };
 

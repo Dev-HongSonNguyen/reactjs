@@ -4,6 +4,7 @@ import {
   FileOutlined,
   PieChartOutlined,
   TeamOutlined,
+  MenuOutlined,
   UserOutlined,
   UnorderedListOutlined,
   OrderedListOutlined,
@@ -15,7 +16,7 @@ import {
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -37,54 +38,32 @@ function getItem(
 const items: MenuItem[] = [
   getItem(<Link to={`/admin`}>Dashboard</Link>, "0", <PieChartOutlined />),
   // getItem("Products", "2", <DesktopOutlined />),
-  getItem("Product", "sub1", <UserOutlined />, [
+  getItem("Product", "sub1", <MenuOutlined />, [
     getItem(<Link to={`/admin/products`}>List Products</Link>, "1"),
     getItem(<Link to={`/admin/products/add`}>Add New Product</Link>, "2"),
   ]),
-  getItem("Category", "sub2", <UserOutlined />, [
+  getItem("Category", "sub2", <MenuOutlined />, [
     getItem(<Link to={`/admin/categories`}>List Categories</Link>, "3"),
     getItem(<Link to={`/admin/categories/add`}>Add New Category</Link>, "4"),
   ]),
   getItem(<Link to={`/`}>Back To</Link>, "sub3", <UserOutlined />),
-  // getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-  // getItem('Files', '9', <FileOutlined />),
-  // getItem(<Link to={`/admin`}>Dashboard</Link>, "1", <PieChartOutlined />),
-  // getItem("Products", "sub2", <OrderedListOutlined />, [
-  //   getItem(
-  //     <Link to={`/admin/products`}>List Products</Link>,
-  //     "2",
-  //     <AppstoreOutlined />
-  //   ),
-  //   getItem(
-  //     <Link to={`/admin/products/add`}>Add New Product</Link>,
-  //     "3",
-  //     <PlusOutlined />
-  //   ),
-  // ]),
-  // getItem("Category", "sub3", <GoldOutlined />, [
-  //   getItem(
-  //     <Link to={`/admin/categories`}>List Categories</Link>,
-  //     "4",
-  //     <AppstoreOutlined />
-  //   ),
-  //   getItem(
-  //     <Link to={`/admin/categories/add`}>Add New Category</Link>,
-  //     "5",
-  //     <PlusOutlined />
-  //   ),
-  // ]),
-  // getItem("Files", "9", <FileOutlined />),
-  // getItem(<Link to={`/`}>Client</Link>, "10", <UserOutlined />),
 ];
 
 const LayoutAdmin = () => {
+  const navigate = useNavigate();
+  //dang xuat
+  const handelLogout = () => {
+    localStorage.removeItem("users");
+    alert("Đăng xuất thành công");
+    navigate("/signin");
+  };
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
 
   return (
-    <Layout style={{ minHeight: "100vh" }}>
+    <Layout style={{ minHeight: "100vh", fontFamily: "'Bebas Neue', cursive" }}>
       <Sider
         collapsible
         collapsed={collapsed}
@@ -111,11 +90,18 @@ const LayoutAdmin = () => {
         <Header
           style={{
             background: colorBgContainer,
-            paddingLeft: 15,
+            paddingLeft: 20,
             fontWeight: "bold",
+            display: "flex",
+            justifyContent: "space-between",
           }}
         >
-          DAY LA TRANG ADMIN
+          <div className="">ĐÂY LÀ TRANG ADMIN</div>
+          <div className="">
+            <button className="btn btn-success" onClick={handelLogout}>
+              Logout
+            </button>
+          </div>
         </Header>
         <Content style={{ margin: "0 16px" }}>
           <Breadcrumb style={{ margin: "16px 0" }}>

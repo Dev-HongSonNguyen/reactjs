@@ -3,16 +3,16 @@ import instance from "./instance";
 const getAllProduct = () => {
   return instance.get("/products");
 };
-const getOneProduct = (id: any) => {
+const getOneProduct = (id: string) => {
   return instance.get("/products/" + id);
 };
-const deleteProduct = (id: any) => {
+const deleteProduct = (id: string) => {
   return instance.delete("/products/" + id);
 };
-const updateProduct = (product: any) => {
+const updateProduct = (product: Iproduct) => {
   return instance.put(`/products/${product._id}`, product);
 };
-const addProduct = (product: any) => {
+const addProduct = (product: Iproduct) => {
   return instance.post("/products", product);
 };
 export {

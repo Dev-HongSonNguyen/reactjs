@@ -5,7 +5,7 @@ interface CategoryAddAdmin {
   addCategory: (category: Icategory) => void;
 }
 const CategoryAddAdmin = (props: CategoryAddAdmin) => {
-  const onFinish = (values: any) => {
+  const onFinish = (values: Icategory) => {
     props.addCategory(values);
   };
 

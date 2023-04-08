@@ -13,6 +13,7 @@ interface ProductAddAdmin {
 }
 const ProductAddAdmin = (props: ProductAddAdmin) => {
   const onFinish = (values: any) => {
+    console.log(values);
     props.addProduct(values);
   };
   const onFinishFailed = (errorInfo: any) => {
@@ -32,7 +33,10 @@ const ProductAddAdmin = (props: ProductAddAdmin) => {
       <Form.Item
         label="Name"
         name="name"
-        rules={[{ required: true, message: "Please input your name!" }]}
+        rules={[
+          { required: true, message: "Please input your name!" },
+          { whitespace: true, message: "Truonng name bat buoc phai nhap" },
+        ]}
       >
         <Input />
       </Form.Item>

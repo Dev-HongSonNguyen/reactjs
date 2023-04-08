@@ -12,11 +12,14 @@ const CategoryUpdateAdmin = (props: CategoryUpdateAdmin) => {
   useEffect(() => {
     getOneCategory(id).then(({ data }) => setCategory(data.category));
   }, []);
+  console.log(category);
+
   const [form] = Form.useForm();
   form.setFieldsValue({
+    _id: category?._id,
     name: category?.name,
   });
-  const onFinish = (values: any) => {
+  const onFinish = (values: Icategory) => {
     console.log(values);
     props.updateCate(values);
   };
@@ -35,6 +38,14 @@ const CategoryUpdateAdmin = (props: CategoryUpdateAdmin) => {
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
+      <Form.Item
+        label="ID Category"
+        name="_id"
+        rules={[{ required: true, message: "Please input your id!" }]}
+        style={{ display: "none" }}
+      >
+        <Input />
+      </Form.Item>
       <Form.Item
         label="Name Category"
         name="name"

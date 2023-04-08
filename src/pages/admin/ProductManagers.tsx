@@ -11,6 +11,7 @@ import { getAllProduct } from "../../api/products";
 import Highlighter from "react-highlight-words";
 import type { FilterConfirmProps } from "antd/es/table/interface";
 import type { InputRef } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
 interface ProductManagers {
   product: Iproduct[];
   removeProduct: (id: string) => void;
@@ -19,14 +20,12 @@ interface ProductManagers {
 }
 //render lai
 const ProductManagers = (props: ProductManagers) => {
-  // const [pro, setPro] = useState([]);
-  // useEffect(() => {
-  //   axios.get("http://localhost:8080/products").then(({ data }) => {
-  //     const newProduct = data.products;
-  //     setPro(newProduct.docs);
-  //   });
-  // }, []);
-
+  useEffect(() => {
+    getAllProduct().then(({ data }) => {
+      const newProduct = data.products;
+      props.setProduct(newProduct.docs);
+    });
+  }, []);
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
   const searchInput = useRef<InputRef>(null);
@@ -170,6 +169,7 @@ const ProductManagers = (props: ProductManagers) => {
       dataIndex: "description",
       key: "description",
       render: (text) => <a>{text}</a>,
+      className: "w-[400px] text-justify",
     },
     {
       title: "Action",
@@ -190,7 +190,13 @@ const ProductManagers = (props: ProductManagers) => {
       ),
     },
   ];
-  return <Table columns={columns} dataSource={props.product} />;
+  return (
+    <Table
+      columns={columns}
+      dataSource={props.product}
+      pagination={{ pageSize: 3 }}
+    />
+  );
 };
 
 export default ProductManagers;

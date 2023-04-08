@@ -50,16 +50,18 @@ function App() {
   }, []);
   //delete product
   const handelRemoveProduct = (id: string) => {
-    deleteProduct(id).then(() => {
-      const newProduct = product.filter((item) => item._id !== id);
-      setProduct(newProduct);
-    });
+    if (confirm("Bạn có chắc chắn muốn xóa không !")) {
+      deleteProduct(id).then(() => {
+        const newProduct = product.filter((item) => item._id !== id);
+        setProduct(newProduct);
+      });
+    }
   };
   //add product
   const addNewProduct = (product: Iproduct) => {
     try {
       addProduct(product);
-      alert("Add New Product Successfully !");
+      // alert("Add New Product Successfully !");
       navigate("/admin/products");
     } catch (error) {
       console.log(error);
@@ -68,21 +70,30 @@ function App() {
   // update product
   const updateProducts = (product: Iproduct) => {
     updateProduct(product);
-    alert("Update Successfully !");
+    // alert("Update Successfully !");
     navigate("/admin/products");
   };
   // add category
   const addNewCategory = (category: Icategory) => {
     addCategory(category);
-    alert("Add New Category Successfully !");
+    // alert("Add New Category Successfully !");
     navigate("/admin/categories");
   };
   //delete category
   const handelRemoveCategory = (id: string) => {
-    deleteCategory(id);
+    if (
+      confirm(
+        "Bạn có chắc chắn muốn xóa không ! Nếu bạn xóa thì toàn bộ danh sản phẩm sẽ bị xóa"
+      )
+    ) {
+      deleteCategory(id);
+    }
+    // alert("Delete Successfully !");
   };
   const updateCategories = (category: Icategory) => {
     updateCategory(category);
+    // alert("Update Category Succesfully !");
+    navigate("/admin/categories");
   };
   return (
     <div className="App">
